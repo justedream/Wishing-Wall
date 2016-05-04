@@ -1,8 +1,6 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 /*
-	Author:strive
-	Date:2014-4-24
 	How to use:
 		1. 发表许愿
 		wish.php?act=add&username=xxx&content=xxx
@@ -13,16 +11,14 @@ header('Content-Type: text/html; charset=utf-8');
 		3. 删除心愿
 		wish.php?act=delete&id=0;
 			{error:1, msg:xxx}
-		
-		
 */
 function echo_str($str){
 	global $cb;
 	if(strlen($cb)){
-		die($cb.'('.$str.')'); 	
+		die($cb.'('.$str.')');
 	}else{
-		die($str);	
-	}	
+		die($str);
+	}
 }
 
 $link=@mysql_connect('localhost','root','') or mysql_connect('localhost','root','admin');
@@ -47,7 +43,7 @@ switch($act){
 		$content=$_GET['content'];
 		if(empty($username) || empty($content)){
 			echo_str('{error:1, msg:"内容不能为空"}');
-			exit;	
+			exit;
 		}
 		$i_sql="INSERT INTO  `zns_wish`.`wish` (`ID` ,`username` ,`content`,`time`) VALUES (NULL ,  '".$username."',  '".$content."',".time().")";
 		mysql_query($i_sql);
@@ -60,7 +56,7 @@ switch($act){
 			echo_str('{error:1, msg:"还没有人发表心愿"}');
 			exit;
 		}
-		
+
 		while($row=mysql_fetch_row($s_res)){
 			$msg[]=array(
 				'id' => $row[0],
@@ -71,16 +67,16 @@ switch($act){
 		}
 		if(empty($msg)){
 			echo_str('{error:1, msg:"还没有人发表心愿"}');
-			exit;	
+			exit;
 		}
 		echo_str('{error:0, msg:'.json_encode($msg).'}');
 		break;
-	
+
 	case 'delete':
 		$id=$_GET['id'];
 		if(empty($id)){
 			echo_str('{error:1, msg:"您拼凑的接口有问题"}');
-			exit;	
+			exit;
 		}
 		$d_sql="DELETE FROM wish WHERE id=".$id;
 		mysql_query($d_sql);
