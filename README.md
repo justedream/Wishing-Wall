@@ -2,4 +2,4 @@
 2.输入的描述信息限制字数
 3.支持透明拖拽
 4.支持删除留言板
-5.留言板 background/position left随机　　
+5.留言板 background/position left随机  　　

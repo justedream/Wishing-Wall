@@ -11,6 +11,7 @@ header('Content-Type: text/html; charset=utf-8');
 		3. 删除心愿
 		wish.php?act=delete&id=0;
 			{error:1, msg:xxx}
+
 */
 function echo_str($str){
 	global $cb;
